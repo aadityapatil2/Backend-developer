@@ -1,33 +1,75 @@
 const express = require('express');
 const lodash = require('lodash')
-const abc = require('../introduction/intro')
-
 const router = express.Router();
-const month = ["jan","feb","march","apr","may","jun","jul","aug","sept","oct","nov","des"]
-const odd = [1,3,5,7,9,11,13,15,17,19]
-const pair = [ ["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]]
-const dublicatenumber = ([1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5])
 
 
-router.get('/test-me', function (req, res) {
-    console.log('My batch is', abc.name)
 
-console.log(lodash.chunk(month ,4))
-console.log(lodash.tail(odd ,9))
-console.log(lodash.fromPairs(pair))
-console.log(lodash.union(dublicatenumber))
+router.get('/movies', function (req, res) {
+    let movies = ['KGF', 'RRR', 'Bahubali', 'Kesari', 'MS Dhoni']
+    res.send(movies)
+})
 
 
-    res.send('Assignment of Nodejs!')
+router.get('/movies/:indexNumber', function (req, res) {
+    let requestParams = req.params
+    let movie = ["Rang de basanti", "The shining", "Lord of the rings", "Batman begins"]
+    let movieName = requestParams.indexNumber
+    let moviesnumber = movie[movieName]
+
+    if (movieName <= 3) {
+        res.send(moviesnumber)
+    } else {
+        res.send("It's not valid number")
+    }
+
 });
 
-
-router.get('/test-you', function(req, res){
-    res.send('This is the second routes implementation')
+router.get('/films', function (req, res) {
+    let films = [{
+        "id": 1,
+        "name": "The Shining"
+    }, {
+        "id": 2,
+        "name": "Incendies"
+    }, {
+        "id": 3,
+        "name": "Rang de Basanti"
+    }, {
+        "id": 4,
+        "name": "Finding Nemo"
+    }]
+    res.send(films)
 })
 
-router.get('/give-me-students-data',function(req, res){
+
+router.get('/films/:filmld', function (req, res) {
+    let RParams = req.params
+
+    let films = [{
+        "id": 1,
+        "name": "The Shining"
+    }, {
+        "id": 2,
+        "name": "Incendies"
+    }, {
+        "id": 3,
+        "name": "Rang de Basanti"
+    }, {
+        "id": 4,
+        "name": "Finding Nemo"
+    }]
+    let filmName = RParams.filmld
+    let g = filmName - 1
+    let filmnumber = films[g]
+
+    if ( g <= 3){
+    res.send(filmnumber)
+    }else{
+        res.send("No movie exists with this id")
+    }
 
 })
+
+
 module.exports = router;
 // adding this comment for no reason

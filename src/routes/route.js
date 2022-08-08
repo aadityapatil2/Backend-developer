@@ -1,33 +1,38 @@
 const express = require('express');
-const lodash = require('lodash')
 const abc = require('../introduction/intro')
-
 const router = express.Router();
-const month = ["jan","feb","march","apr","may","jun","jul","aug","sept","oct","nov","des"]
-const odd = [1,3,5,7,9,11,13,15,17,19]
-const pair = [ ["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]]
-const dublicatenumber = ([1],[1,2],[1,2,3],[1,2,3,4],[1,2,3,4,5])
-
 
 router.get('/test-me', function (req, res) {
     console.log('My batch is', abc.name)
+    abc.printName()
+    logger.welcome()
 
-console.log(lodash.chunk(month ,4))
-console.log(lodash.tail(odd ,9))
-console.log(lodash.fromPairs(pair))
-console.log(lodash.union(dublicatenumber))
-
-
-    res.send('Assignment of Nodejs!')
+    res.send('My second ever api!')
 });
 
-
-router.get('/test-you', function(req, res){
-    res.send('This is the second routes implementation')
+router.get('/students', function (req, res){
+    let students = ['Sabiha', 'Neha', 'Akash']
+    res.send(students)
 })
 
-router.get('/give-me-students-data',function(req, res){
+router.get('/student-details/:name', function(req, res){
+    /*
+    params is an attribute inside request that contains 
+    dynamic values.
+    This value comes from the request url in the form of an 
+    object where key is the variable defined in code 
+    and value is what is sent in the request
+    */
 
+    let requestParams = req.params
+
+    // JSON strigify function helps to print an entire object
+    // We can use any ways to print an object in Javascript, JSON stringify is one of them
+    console.log("This is the request "+ JSON.stringify(requestParams))
+    let studentName = requestParams.name
+    console.log('Name of the student is ', studentName)
+    
+    res.send('Dummy response')
 })
+
 module.exports = router;
-// adding this comment for no reason

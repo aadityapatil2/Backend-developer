@@ -3,43 +3,69 @@ const lodash = require('lodash')
 
 const router = express.Router();
 
-// ==========================sol1=============================
-router.get('/sol1', function(req, res){
+// =====================POST++++++++++++++++++++++++++
 
-  let arr= [1,2,3,5,6,7]
- 
-  let total = 0;
-  for (var i in arr) {
-      total += arr[i];
-  }
-
-  let lastDigit= arr.pop()
-  let consecutiveSum= lastDigit * (lastDigit+1) / 2
-  let missingNumber= consecutiveSum - total
-
-  res.send(  { data: missingNumber  }  );
+router.post('/post-me', function (req, res) {
+  let id = req.body.name
+  let password = req.body.password
+  console.log(id, password)
+  console.log(req.body)
+  // res.send(req.body)
+  res.send(id)
 
 })
-// =========================sol2================================
-
-router.get('/sol2',function(req, res){
 
 
-  let arr= [33, 34, 35, 37, 38]
-  let len= arr.length
+router.post('/post-me-1', function (req, res) {
+  let arr = ["aaditya", 22]
+  let p = req.body.element
+  arr.push(p)
+  res.send({ msg: arr, status: true })
 
-  let total = 0;
-  for (var i in arr) {
-      total += arr[i];
-  }
+})
 
-  let firstDigit= arr[0]
-  let lastDigit= arr.pop()
-  let consecutiveSum= (len + 1) * (firstDigit+ lastDigit ) / 2
-  let missingNumber= consecutiveSum - total
- 
-  res.send(  { data: missingNumber  }  );
-});
+let players =
+  [
+    {
+      "name": "manish",
+      "dob": "1/1/1995",
+      "gender": "male",
+      "city": "jalandhar",
+      "sports": [
+        "swimming"
+      ]
+    },
+    {
+      "name": "gopal",
+      "dob": "1/09/1995",
+      "gender": "male",
+      "city": "delhi",
+      "sports": [
+        "soccer"
+      ],
+    },
+    {
+      "name": "lokesh",
+      "dob": "1/1/1990",
+      "gender": "male",
+      "city": "mumbai",
+      "sports": [
+        "soccer"
+      ],
+    },
+  ]
+
+
+
+router.post('/players', function (req, res) {
+
+  //LOGIC WILL COME HERE
+  let newplayer = req.body.player
+  players.push(newplayer)//last element add in array
+  res.send({ data: players, status: true })
+})
+
 
 module.exports = router;
 // adding this comment for no reason
+

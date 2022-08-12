@@ -58,12 +58,20 @@ let players =
 
 
 router.post('/players', function (req, res) {
-
   //LOGIC WILL COME HERE
   let newplayer = req.body.player
-  players.push(newplayer)//last element add in array
-  res.send({ data: players, status: true })
+  let n = newplayer.name
+
+  for (i = 0; i < players.length; i++) {
+    if (players[i].name == n) {
+      return res.send("Sorry, This name is already exist!")
+    }
+  }
+  players.push(newplayer)
+  res.send({players})
+
 })
+
 
 
 module.exports = router;

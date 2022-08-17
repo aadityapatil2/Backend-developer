@@ -4,7 +4,7 @@ const bookSchema = new mongoose.Schema( {
     bookName: String, 
     authorName: String, 
     tags: [String],
-    
+    year : String,
     isPublished: Boolean,
     prices: {
         indianPrice: String,

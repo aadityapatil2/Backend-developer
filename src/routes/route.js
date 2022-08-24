@@ -17,8 +17,11 @@ router.post("/createPublisher", publisherController.createPublisher)
 
 // Book routes
 router.post("/createBook", bookController.createBook  )
+
 router.get("/getAllBooksWithCompleteDetails", bookController.getAllBooksWithCompleteDetails)
 
 router.put("/books", bookController.updateSpecificBooks)
+
+router.get("/updateprice", authorController.updateprice)
 
 module.exports = router;

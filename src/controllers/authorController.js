@@ -6,4 +6,10 @@ const createAuthor= async function (req, res) {
     res.send({data: authorCreated})
 }
 
+
+const updateprice = async function(req,res){
+    const newprice = await AuthorModel.find().updateMany({rating : {$gt : 3.5 }},{$set :{age : (age+10)}})
+    res.send({data: newprice})
+}
 module.exports.createAuthor= createAuthor
+module.exports.updateprice = updateprice

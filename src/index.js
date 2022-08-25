@@ -1,14 +1,19 @@
 const express = require('express');
+const http = require('http');
 const bodyParser = require('body-parser');
 const route = require('./routes/route.js');
 const { default: mongoose } = require('mongoose');
+const { timeStamp } = require('console');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// const requestListener = function (req, res) {
+//   res.end("Your IP Addresss is: " + req.socket.localAddress);
+// };
 
-mongoose.connect("mongodb+srv://functionup-cohort:G0Loxqc9wFEGyEeJ@cluster0.rzotr.mongodb.net/Pritesh8769811-DB?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://Backend-Developer:VOsRhEoMTbd0U6U6@cluster0.a48nwas.mongodb.net/AP@2000-DB?retryWrites=true&w=majority", {
     useNewUrlParser: true
 })
 .then( () => console.log("MongoDb is connected"))
@@ -20,7 +25,7 @@ app.use (
         next();
   }
   );
-
+  
 app.use('/', route);
 
 

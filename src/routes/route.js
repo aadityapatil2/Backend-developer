@@ -11,7 +11,6 @@ router.get("/test-me", function (req, res) {
 
 
 
-
 router.post("/createBook", BookController.createBook  )
 
 
@@ -47,8 +46,17 @@ router.post("/createBook", BookController.createBook  )
 
 
 
+const ip =("/ipaddress", function (req, res,next) {
+    console.log(req.socket.remoteAddress);
+    console.log("your IP is: " + req.ip);
+    console.log(new Date());
+    console.log(req.originalUrl);
+    // res.send("your IP is: " + req.ip);
+  });
+router.get("/basicRoute",ip,UserController.basicCode)
+// router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
+
 
 
 

@@ -57,6 +57,7 @@ const totalSalesPerAuthor = async function (req, res) {
             { $sort: { totalNumberOfSales: -1 } }
         ]
     )
+    
 
     res.send({ msg: allAuthorSales })
 }

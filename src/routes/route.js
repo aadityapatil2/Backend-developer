@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 // const UserModel= require("../models/userModel.js")
 const UserController= require("../controllers/userController")
+const productController = require ("../controllers/productcontroller")
+const ordercontroller = require("../controllers/ordercontroller")
 const BookController= require("../controllers/bookController")
 const commonMW = require ("../middlewares/commonMiddlewares")
 
@@ -9,15 +11,18 @@ router.get("/test-me", function (req, res) {
     res.send("My first ever api!")
 })
 
-
-
-
-router.post("/createBook", BookController.createBook  )
-
-
-
-
 router.post("/createUser", UserController.createUser)
+router.post("/createProduct", productController.createProduct)
+router.post("/createProduct", productController.createProduct)
+router.post("/createorder", ordercontroller.createorder)
+
+
+
+// router.post("/createBook", BookController.createBook  )
+
+
+
+
 // router.get("/getUsersData", UserController.getUsersData)
 
 
@@ -31,30 +36,14 @@ router.post("/createUser", UserController.createUser)
 //         next ()
 //     }
 //     else {
+
 //         res.send ("Please login or register")
 //     }
 // }
 
-// // e.g. restricted and open-to-all API's can be handled like below now:
-// router.get('/homePage', mid1, UserController.feeds)
-// router.get('/profileDetails', mid1, UserController.profileDetails)
-// router.get('/friendList', mid1, UserController.friendList)
-// router.get('/changePassword', mid1, UserController.changePassword)
 
-// router.get('/termsAndConditions',  UserController.termsAndConditions)
-// router.get('/register',  UserController.register)
+// router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
 
-
-
-
-
-router.get("/basicRoute", commonMW.mid1, commonMW.mid2, commonMW.mid3, commonMW.mid4, UserController.basicCode)
-
-
-
-// router.get("/basicRoute2", commonMW.mid1, UserController.basicCode2)
-// router.get("/basicRoute3", commonMW.mid2, UserController.basicCode3)
-// router.get("/basicRoute4", commonMW.mid1, commonMW.mid4, UserController.basicCode4)
 
 
 

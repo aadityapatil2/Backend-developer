@@ -30,7 +30,7 @@ const loginUser = async function (req, res) {
   // The same secret will be used to decode tokens
   let token = jwt.sign(
     {
-      userId: user._id.toString(),
+      userId: user.firstName.toString(),
       batch: "plutonium",
       organisation: "FUnctionUp",
     },
@@ -59,18 +59,18 @@ const updateUser = async function (req, res) {
   }
 
   let userData = req.body;
-  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, {new: true});
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData, { new: true });
   res.send({ status: updatedUser, data: updatedUser });
 };
 
-const deleteUser = async function(req, res) {    
+const deleteUser = async function (req, res) {
   let userId = req.params.userId
   let user = await userModel.findById(userId)
-  if(!user) {
-      return res.send({status: false, message: "no such user exists"})
+  if (!user) {
+    return res.send({ status: false, message: "no such user exists" })
   }
-  let updatedUser = await userModel.findOneAndUpdate({_id: userId}, {isDeleted: true}, {new: true})
-  res.send({status: true, data: updatedUser})
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, { isDeleted: true }, { new: true })
+  res.send({ status: true, data: updatedUser })
 }
 
 module.exports.createUser = createUser;
